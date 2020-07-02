@@ -15,6 +15,18 @@
     </fragment>
     <fragment
         android:id="@+id/addListFragment"
-        android:name="com.example.shopping_list.view.fragment.add.AddListFragment"
-        android:label="AddListFragment" />
+        android:name="com.example.shopping_list.view.fragment.add_list.AddListFragment"
+        android:label="AddListFragment" >
+        <action
+            android:id="@+id/action_addListFragment_to_selectProductFragment"
+            app:destination="@id/selectProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectProductFragment"
+        android:name="com.example.shopping_list.view.fragment.select_product.SelectProductFragment"
+        android:label="SelectProductFragment">
+        <action
+            android:id="@+id/action_selectProductFragment_to_addListFragment"
+            app:destination="@id/addListFragment" />
+    </fragment>
 </navigation>

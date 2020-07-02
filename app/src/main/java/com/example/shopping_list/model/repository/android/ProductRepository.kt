@@ -43,13 +43,15 @@ class ProductRepository(private val mDatabase: SQLiteDatabase? = ShoppingListDat
         mProductsLiveData.value = listOf()
     }
 
-    override fun saveProduct(product: Product) {
+    override fun saveProduct(product: Product): Product? {
         mDatabase?.let { db ->
             val contentValues = ContentValues()
             contentValues.put(ShoppingListDatabase.PRODUCTS_KEY_NAME, product.name)
 
-            db.insert(ShoppingListDatabase.PRODUCTS_TABLE_NAME, null, contentValues)
+            val id = db.insert(ShoppingListDatabase.PRODUCTS_TABLE_NAME, null, contentValues)
+            return Product(id, product.name)
         }
+        return null
     }
 
     override fun fetchProductsForList(listId: Long) {

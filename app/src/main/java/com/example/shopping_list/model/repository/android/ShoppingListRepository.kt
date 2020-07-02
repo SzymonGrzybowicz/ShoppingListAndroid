@@ -52,6 +52,20 @@ class ShoppingListRepository(
             val contentValues = ContentValues()
             contentValues.put(ShoppingListDatabase.LISTS_KEY_NAME, list.name)
             contentValues.put(ShoppingListDatabase.LISTS_KEY_STATUS, list.status.name)
+
+            list.id?.let { id ->
+                db.update(
+                    ShoppingListDatabase.LISTS_TABLE_NAME,
+                    contentValues,
+                    "ShoppingListDatabase.LISTS_KEY_ID = ?",
+                    arrayOf(id.toString())
+                )
+                list.products?.let { products ->
+                    mProductRepository.saveProductsForList(id, products)
+                }
+                return
+            }
+
             val id = db.insert(ShoppingListDatabase.LISTS_TABLE_NAME, null, contentValues)
             list.products?.let { products ->
                 mProductRepository.saveProductsForList(id, products)
