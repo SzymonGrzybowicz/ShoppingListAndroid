@@ -11,11 +11,14 @@
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_addListFragment"
-            app:destination="@id/addListFragment" />
+            app:destination="@id/editListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listDetailsFragment"
+            app:destination="@id/listDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addListFragment"
-        android:name="com.example.shopping_list.view.fragment.add_list.AddListFragment"
+        android:id="@+id/editListFragment"
+        android:name="com.example.shopping_list.view.fragment.add_list.EditListFragment"
         android:label="AddListFragment" >
         <action
             android:id="@+id/action_addListFragment_to_selectProductFragment"
@@ -24,9 +27,13 @@
     <fragment
         android:id="@+id/selectProductFragment"
         android:name="com.example.shopping_list.view.fragment.select_product.SelectProductFragment"
-        android:label="SelectProductFragment">
+        android:label="SelectProductFragment"/>
+    <fragment
+        android:id="@+id/listDetailsFragment"
+        android:name="com.example.shopping_list.view.fragment.list_details.ListDetailsFragment"
+        android:label="ListDetailsFragment" >
         <action
-            android:id="@+id/action_selectProductFragment_to_addListFragment"
-            app:destination="@id/addListFragment" />
+            android:id="@+id/action_listDetailsFragment_to_editListFragment"
+            app:destination="@id/editListFragment" />
     </fragment>
 </navigation>

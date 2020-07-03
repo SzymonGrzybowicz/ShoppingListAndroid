@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.base.ui.BaseFragment
 import com.example.shopping_list.R
 import com.example.shopping_list.model.dto.ShoppingList
+import com.example.shopping_list.view.activity.MainActivity
 import com.example.shopping_list.view_model.fragment.main.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -53,6 +54,10 @@ class MainFragment : BaseFragment() {
         }
         val adapter = MainFragmentAdapter(requireContext(), mShoppingLists)
         main_fragment_list.adapter = adapter
+        main_fragment_list.setOnItemClickListener { _, _, position, _ ->
+            (activity as MainActivity).sharedViewModel.selectedShoppingList = mShoppingLists[position]
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToListDetailsFragment())
+        }
         mViewModel.fetchShoppingLists(mSelectedStatus)
         mViewModel.shoppingListLiveData.observe(this, Observer {
             mShoppingLists.clear()
@@ -60,6 +65,7 @@ class MainFragment : BaseFragment() {
             adapter.notifyDataSetChanged()
         })
         main_fragment_add_btn.setOnClickListener {
+            (activity as MainActivity).sharedViewModel.selectedShoppingList = null
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToAddListFragment())
         }
     }

@@ -8,7 +8,7 @@ data class ShoppingList(
     val id: Long? = null,
     val name: String,
     var status: Status,
-    var products: MutableList<Product>? = null
+    val products: MutableList<Product> = mutableListOf()
 ): Parcelable {
 
     enum class Status{

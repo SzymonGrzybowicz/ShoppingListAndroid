@@ -57,7 +57,7 @@ class ShoppingListRepository(
                 db.update(
                     ShoppingListDatabase.LISTS_TABLE_NAME,
                     contentValues,
-                    "ShoppingListDatabase.LISTS_KEY_ID = ?",
+                    "${ShoppingListDatabase.LISTS_KEY_ID} = ?",
                     arrayOf(id.toString())
                 )
                 list.products?.let { products ->

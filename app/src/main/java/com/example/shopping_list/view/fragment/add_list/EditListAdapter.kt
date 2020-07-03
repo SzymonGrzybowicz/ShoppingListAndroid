@@ -10,7 +10,7 @@ import com.example.shopping_list.R
 import com.example.shopping_list.model.dto.Product
 import kotlinx.android.synthetic.main.adapter_products_item.view.*
 
-class AddListAdapter(context: Context, private val products: MutableList<Product>) :
+class EditListAdapter(context: Context, private val products: MutableList<Product>) :
     ArrayAdapter<Product>(context, R.layout.adapter_products_item, products) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -21,6 +21,9 @@ class AddListAdapter(context: Context, private val products: MutableList<Product
         val product = products[position]
 
         item.adapter_product_name_text.text = product.name
+        if (product.amount > 0) {
+            item.adapter_product_amount_edit_text.setText(product.amount.toString())
+        }
         val text = item.adapter_product_amount_edit_text.text.toString()
         if (text.isEmpty() || text.toInt() < 1) {
             item.adapter_product_amount_edit_text.setBackgroundColor(

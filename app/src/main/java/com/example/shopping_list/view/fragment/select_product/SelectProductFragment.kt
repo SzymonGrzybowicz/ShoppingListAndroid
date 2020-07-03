@@ -9,13 +9,11 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.base.ui.BaseFragment
 import com.example.shopping_list.R
 import com.example.shopping_list.model.dto.Product
 import com.example.shopping_list.view.activity.MainActivity
-import com.example.shopping_list.view_model.fragment.SharedViewModel
 import com.example.shopping_list.view_model.fragment.select_product.SelectProductViewModel
 import kotlinx.android.synthetic.main.fragment_select_product.*
 
@@ -44,7 +42,7 @@ class SelectProductFragment : BaseFragment() {
         add_product_list.adapter = mAdapter
         add_product_list.setOnItemClickListener { _, _, position, _ ->
             val product = mProducts[position]
-            (activity as MainActivity).sharedViewModel.addedProduct = product
+            (activity as MainActivity).sharedViewModel.selectedShoppingList?.products?.add(product)
             findNavController().popBackStack()
         }
 
@@ -73,7 +71,7 @@ class SelectProductFragment : BaseFragment() {
                         val product = Product(name = name, amount = -1)
                         mViewModel.saveProduct(product)
                         dialog.dismiss()
-                        (activity as MainActivity).sharedViewModel.addedProduct = product
+                        (activity as MainActivity).sharedViewModel.selectedShoppingList?.products?.add(product)
                         findNavController().popBackStack()
                     }
                 }
