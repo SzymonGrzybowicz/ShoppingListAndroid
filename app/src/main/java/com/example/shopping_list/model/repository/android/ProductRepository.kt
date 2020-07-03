@@ -22,7 +22,7 @@ class ProductRepository(private val mDatabase: SQLiteDatabase? = ShoppingListDat
 
             val cursor = db.query(
                 ShoppingListDatabase.PRODUCTS_TABLE_NAME, columns,
-                null, null, null, null, null, null
+                null, null, null, null, ShoppingListDatabase.PRODUCTS_KEY_NAME, null
             )
 
             val products = mutableListOf<Product>()
@@ -65,7 +65,7 @@ class ProductRepository(private val mDatabase: SQLiteDatabase? = ShoppingListDat
             val cursor = db.query(
                 ShoppingListDatabase.JUNCTION_LIST_PRODUCT_TABLE_NAME, columns,
                 "${ShoppingListDatabase.JUNCTION_KEY_LIST_ID} = ?", arrayOf(listId.toString()),
-                null, null, null, null
+                null, null, ShoppingListDatabase.PRODUCTS_KEY_NAME, null
             )
 
             val products = mutableListOf<Product>()

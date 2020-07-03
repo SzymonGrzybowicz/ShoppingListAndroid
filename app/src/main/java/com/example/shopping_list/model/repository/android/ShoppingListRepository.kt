@@ -25,7 +25,7 @@ class ShoppingListRepository(
             val cursor = db.query(
                 ShoppingListDatabase.LISTS_TABLE_NAME, columns,
                 "${ShoppingListDatabase.LISTS_KEY_STATUS} = ?", arrayOf(status.name),
-                null, null, null, null
+                null, null, ShoppingListDatabase.LISTS_KEY_DATE, null
             )
 
             val shoppingLists = mutableListOf<ShoppingList>()

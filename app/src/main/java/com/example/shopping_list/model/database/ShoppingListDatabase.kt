@@ -47,6 +47,7 @@ class ShoppingListDatabase(context: Context):
         const val LISTS_KEY_ID = "_id"
         const val LISTS_KEY_NAME = "name"
         const val LISTS_KEY_STATUS = "status"
+        const val LISTS_KEY_DATE = "date"
 
         const val PRODUCTS_TABLE_NAME = "PRODUCTS"
         const val PRODUCTS_KEY_ID = "_id"
@@ -66,7 +67,8 @@ class ShoppingListDatabase(context: Context):
         private const val CREATE_LISTS_TABLE_QUERY = "CREATE TABLE $LISTS_TABLE_NAME (" +
                 "$LISTS_KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$LISTS_KEY_NAME TEXT NOT NULL, " +
-                "$LISTS_KEY_STATUS TEXT NOT NULL);"
+                "$LISTS_KEY_STATUS TEXT NOT NULL, "+
+                "$LISTS_KEY_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
 
         private const val CREATE_PRODUCT_TABLE_QUERY = "CREATE TABLE $PRODUCTS_TABLE_NAME (" +
                 "$PRODUCTS_KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
