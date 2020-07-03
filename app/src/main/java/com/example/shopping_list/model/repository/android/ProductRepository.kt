@@ -127,7 +127,7 @@ class ProductRepository(private val mDatabase: SQLiteDatabase? = ShoppingListDat
     override val productsLiveData: LiveData<List<Product>>
         get() = mProductsLiveData
 
-    private val mProductsLiveData = MutableLiveData<List<Product>>()
+    var mProductsLiveData = MutableLiveData<List<Product>>()
 
     companion object {
         private const val TAG = "ProductRepository"
